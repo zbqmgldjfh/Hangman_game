@@ -76,10 +76,57 @@ void DrawHangman(int guessCount = 0)
 
 }
 
+void PrintLetters(string input, char from, char to)
+{
+    string s;
+    for(char i = from; i <= to; i++)
+    {
+        if(input.find(i) == string::npos) // 만약 input이 current character를 갖고있다면
+        { // 찾지못한 character
+            s += i;
+            s += " ";
+        }else{
+            s += "  "; // 이미찾은 character는 빈공간으로 출력 
+        }
+    }
+    PrintMessage(s, false, false);
+}
+
+void PrintAvailableLetters(string taken) // 출력 wrapper함수 
+{
+    PrintMessage("Available Letters");
+    PrintLetters(taken, 'A', 'M');
+    PrintLetters(taken, 'N', 'Z');
+}
+
+bool PrintWordAndCheckWin(string word, string guessed) // guess아님  guessed 맞음 
+{
+    bool won = true;
+    string s;
+    for(int i(0); i < word.length(); i++)
+    {
+        if(guessed.find(word[i]) == string::npos)
+        { // 찾지 못했다면 
+            won = false;
+            s += "_ "; // 틀린 character는 보여주지 않고 placeholder로 출력 
+        }else{
+            s += word[i]; // 맞춘 character는 출력 
+            s += " ";
+        }
+    }
+    PrintMessage(s, false);
+
+    return won;
+}
+
 int main(void)
 {
+    string guesses = "JIWOO";
     PrintMessage("HANG MAN");
     DrawHangman(9);
+    PrintAvailableLetters(guesses);
+    PrintMessage("Guess the word");
+    PrintWordAndCheckWin("JIWOOS", guesses);
     getchar();
 
     return 0;
