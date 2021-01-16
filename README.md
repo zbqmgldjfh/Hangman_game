@@ -112,9 +112,38 @@ void PrintLetters(string input, char from, char to)
     PrintMessage(s, false, false);
 }
 ```
-
 **결 과**
 
 <img src = "images/3.PrintLetters.png" width="550px">
 
 입력했던 단어는 빈칸으로 출력, 남은 단어만 
+
+
+### PrintWordAndCheck >
+
+반환값으로는 bool로써 character가 맞다면 true, 아니면 false 반환
+```C
+bool PrintWordAndCheckWin(string word, string guessed) // guess아님  guessed 맞음 
+{
+    bool won = true; // 기본값 true
+    string s;
+    for (int i(0); i < word.length(); i++) // 단어 길이만큼 반복
+    {
+        if (guessed.find(word[i]) == string::npos)
+        { // 찾지 못했다면 
+            won = false;
+            s += "_ "; // 틀린 character는 보여주지 않고 placeholder로 출력 
+        }
+        else {
+            s += word[i]; // 맞춘 character는 출력 
+            s += " ";
+        }
+    }
+    PrintMessage(s, false); // 위쪽경계없이 출력
+
+    return won;  // bool값 반환
+}
+```
+**결 과**
+
+<img src = "images/4.PrintWordAndCheck.png" width="550px">
