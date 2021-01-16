@@ -10,7 +10,7 @@
 
 ## Code 설명
 
-### 출력문 logic   
+### 출력문 logic >  
 하나의 출력 wrapper function을 만들어 위, 아래 경계와, 양쪽여백을 한번에 control가능한 함수를 만들어 활용하였습니다.
 ```C
 // 위, 아래 border는 기본으로 true입니다. 사용하지 않고싶다면 flase를 넘겨주면됩니다.
@@ -51,4 +51,40 @@ void PrintMessage(string message, bool printTop = true, bool printBottom = true)
 
 <img src = "images/1.PrintMessage.png" width="400px">
 
-###
+### DrawHangman logic >
+반복부분 생략
+```C
+void DrawHangman(int guessCount = 0)
+{
+    if (guessCount >= 1)
+        PrintMessage("|", false, false);
+    else
+        PrintMessage("", false, false);
+
+    ... 중략
+
+    if (guessCount == 4) // 딱 4일때만, 몸체는 / -> /| -> /|\ 순으로 그려야 해서 
+        PrintMessage("/  ", false, false); // else는 없음 빈공간은 출력하고싶지 않음
+
+    if (guessCount == 5) // 딱 5 일때만 
+        PrintMessage("/| ", false, false); // else는 없음 빈공간은 출력하고싶지 않음
+
+    if (guessCount >= 6) // 6아상부터는 몸체 다 보여줌 
+        PrintMessage("/|\\", false, false); // escape문자 조심 
+    else
+        PrintMessage("", false, false);
+
+    ... 중략
+
+    if (guessCount >= 9) // 9아상부터는 몸체 다 보여줌 
+        PrintMessage("/\\", false, false); // escape문자 조심 
+    else
+        PrintMessage("", false, false);
+
+}
+```
+guessCount가 늘어감에 따라 사람이 완성되가는 모습으로 출력.
+
+**결 과**
+
+<img src = "images/2.DrawHangman.png" width="550px">
