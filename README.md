@@ -88,3 +88,33 @@ guessCount가 늘어감에 따라 사람이 완성되가는 모습으로 출력.
 **결 과**
 
 <img src = "images/2.DrawHangman.png" width="550px">
+
+### PrintLetters logic >
+
+해당 character가 정답안에 있는지 확인하는 함수   
+string::npos 는 find가 찾는문자열이 없을경우 반환함
+
+```C
+void PrintLetters(string input, char from, char to)
+{
+    string s;
+    for (char i = from; i <= to; i++) // from부터 to까지 반복
+    {
+        if (input.find(i) == string::npos) // 만약 input이 current character를 갖고있지 않다면
+        { // 찾지못한 character
+            s += i;
+            s += " ";
+        }
+        else {
+            s += "  "; // 이미찾은 character는 빈공간으로 출력 
+        }
+    }
+    PrintMessage(s, false, false);
+}
+```
+
+**결 과**
+
+<img src = "images/3.PrintLetters.png" width="550px">
+
+입력했던 단어는 빈칸으로 출력, 남은 단어만 
