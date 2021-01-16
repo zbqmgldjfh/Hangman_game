@@ -89,7 +89,9 @@ guessCount가 늘어감에 따라 사람이 완성되가는 모습으로 출력.
 **결 과**
 
 <img src = "images/2.DrawHangman.png" width="550px">
+
 ___
+
 ### PrintLetters logic >
 
 해당 character가 정답안에 있는지 확인하는 함수   
@@ -120,6 +122,7 @@ void PrintLetters(string input, char from, char to)
 입력했던 단어는 빈칸으로 출력, 남은 단어만 
 
 ___
+
 ### PrintWordAndCheck >
 
 반환값으로는 bool로써 character가 맞다면 true, 아니면 false 반환
@@ -148,6 +151,7 @@ bool PrintWordAndCheckWin(string word, string guessed) // guess아님  guessed �
 **결 과**
 
 <img src = "images/4.PrintWordAndCheck.png" width="550px">
+
 ___
 
 나머지 쉬운 부분은 주석으로 설명을 적었습니다. 감사합니다.
